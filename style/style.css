@@ -1,4 +1,3 @@
-/* Základní nastavení a reset */
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +11,6 @@ body {
     overflow-x: hidden; 
 }
 
-/* Navigace */
 header {
     position: absolute;
     top: 0;
@@ -22,7 +20,7 @@ header {
     justify-content: space-between;
     align-items: center;
     z-index: 100;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7) 0%);
 }
 
 .logo {
@@ -34,11 +32,11 @@ header {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     line-height: 1.2;
+    color: #1a1a1a;
 }
 
-/* ÚPRAVA PRO TVOJE LOGO */
 .logo img {
-    height: 50px; /* Toto drží logo v rozumné velikosti */
+    height: 50px; 
     width: auto;
     display: block;
 }
@@ -51,7 +49,8 @@ nav ul {
 
 nav a {
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(0, 0, 0, 0.75);
+    text-shadow: #007bff;
     font-size: 0.95rem;
     font-weight: 500;
     transition: all 0.3s ease;
@@ -79,12 +78,10 @@ nav a:hover {
     box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5);
 }
 
-/* Hero Sekce */
 .hero {
     position: relative;
     height: 100vh;
     width: 100%;
-    /* Pozadí - můžeš si sem pak vrátit cestu k tvé fotce */
     background: url('https://www.souepl.cz/wp-content/uploads/2025/12/IMG_20251207_161329607-edited-1-1024x682.jpg') no-repeat center center/cover;
     display: flex;
     align-items: center;
@@ -112,7 +109,6 @@ nav a:hover {
     margin-top: -40px; 
 }
 
-/* Badge - Přijímací řízení */
 .badge {
     display: inline-flex;
     align-items: center;
@@ -133,7 +129,7 @@ nav a:hover {
     display: inline-block;
     width: 8px;
     height: 8px;
-    background-color: #4ade80; /* Zelená tečka */
+    background-color: #4ade80;
     border-radius: 50%;
     margin-right: 10px;
     box-shadow: 0 0 8px #4ade80;
@@ -156,7 +152,6 @@ p.description {
     font-weight: 400;
 }
 
-/* Tlačítka */
 .buttons {
     display: flex;
     gap: 20px;
@@ -195,7 +190,6 @@ p.description {
     transform: translateY(-2px);
 }
 
-/* Statistiky dole */
 .stats-bar {
     position: absolute;
     bottom: 40px;
