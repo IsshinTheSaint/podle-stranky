@@ -1,26 +1,86 @@
+/* --- ZÁKLAD A RESET --- */
+html {
+    scroll-behavior: smooth; 
+    cursor: none;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor: none; 
 }
 
 body {
     font-family: 'Inter', sans-serif;
     color: #ffffff;
-    background-color: #1a1a1a;
+    background-color: #121212; 
     overflow-x: hidden; 
 }
 
+/* --- VLASTNÍ KURZOR (CUSTOM CURSOR) --- */
+.cursor-dot, .cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 99999;
+    pointer-events: none; 
+}
+
+.cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #007bff;
+    box-shadow: 0 0 10px #007bff;
+    transition: transform 0.2s;
+}
+
+.cursor-outline {
+    width: 35px;
+    height: 35px;
+    border: 1px solid rgba(0, 123, 255, 0.6);
+    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.cursor-hover {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(0, 123, 255, 0.1);
+    border-color: rgba(0, 123, 255, 0.2);
+}
+
+.cursor-hover-dot {
+    transform: translate(-50%, -50%) scale(0); 
+}
+
+@media (max-width: 1024px) {
+    html, *, body { cursor: auto !important; }
+    .cursor-dot, .cursor-outline { display: none !important; }
+}
+
+/* --- NAVIGACE A HEADER --- */
 header {
-    position: absolute;
+    position: fixed; 
     top: 0;
     width: 100%;
     padding: 25px 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 100;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7) 0%);
+    z-index: 1000;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+    transition: all 0.4s ease; 
+}
+
+header.scrolled {
+    background: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 15px 60px; 
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 .logo {
@@ -32,376 +92,224 @@ header {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     line-height: 1.2;
-    color: #1a1a1a;
+    color: #ffffff; 
 }
 
 .logo img {
     height: 50px; 
     width: auto;
     display: block;
+    transition: height 0.3s ease;
 }
 
-nav ul {
-    display: flex;
-    gap: 35px;
-    list-style: none;
-}
+header.scrolled .logo img { height: 40px; }
 
+nav ul { display: flex; gap: 35px; list-style: none; }
 nav a {
-    text-decoration: none;
-    color: rgba(0, 0, 0, 0.75);
-    text-shadow: #007bff;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
+    text-decoration: none; color: rgba(255, 255, 255, 0.75);
+    font-size: 0.95rem; font-weight: 500; transition: all 0.3s ease;
 }
-
-nav a:hover {
-    color: #fff;
-    text-shadow: 0 0 10px rgba(255,255,255,0.5);
-}
+nav a:hover { color: #fff; text-shadow: 0 0 10px rgba(0,123,255,0.8); }
 
 .btn-bakalari {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 25px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+    background-color: #007bff; color: white; padding: 10px 25px;
+    border-radius: 50px; text-decoration: none; font-weight: 600;
+    font-size: 0.9rem; box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
     transition: transform 0.2s, box-shadow 0.2s;
 }
+.btn-bakalari:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5); }
 
-.btn-bakalari:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5);
-}
-
+/* --- HERO SEKCE --- */
 .hero {
-    position: relative;
-    height: 100vh;
-    width: 100%;
+    position: relative; min-height: 100vh; width: 100%;
     background: url('https://www.souepl.cz/wp-content/uploads/2025/12/IMG_20251207_161329607-edited-1-1024x682.jpg') no-repeat center center/cover;
-    display: flex;
-    align-items: center;
-    padding: 0 60px;
+    display: flex; align-items: center; padding: 120px 60px 150px 60px; 
 }
 
 .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-        rgba(21, 23, 30, 0.9) 0%, 
-        rgba(21, 23, 30, 0.7) 45%, 
-        rgba(21, 23, 30, 0.1) 100%);
-    z-index: 1;
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(18, 18, 18, 0.95) 0%, rgba(18, 18, 18, 0.7) 50%, rgba(18, 18, 18, 0.1) 100%); z-index: 1;
 }
 
-.content {
-    position: relative;
-    z-index: 2;
-    max-width: 700px;
-    margin-top: -40px; 
-}
+.content { position: relative; z-index: 2; max-width: 700px; margin-top: -40px; }
 
 .badge {
-    display: inline-flex;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 8px 18px;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 30px;
-    color: #e2e8f0;
-    border: 1px solid rgba(255,255,255,0.15);
-    letter-spacing: 0.5px;
+    display: inline-flex; align-items: center; background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px); padding: 8px 18px; border-radius: 50px;
+    font-size: 0.85rem; font-weight: 600; margin-bottom: 30px; color: #e2e8f0;
+    border: 1px solid rgba(255,255,255,0.15); letter-spacing: 0.5px;
 }
-
 .badge::before {
-    content: '';
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background-color: #4ade80;
-    border-radius: 50%;
-    margin-right: 10px;
-    box-shadow: 0 0 8px #4ade80;
+    content: ''; display: inline-block; width: 8px; height: 8px; background-color: #4ade80;
+    border-radius: 50%; margin-right: 10px; box-shadow: 0 0 8px #4ade80; animation: pulse-dot 1.5s infinite ease-in-out;
 }
 
-h1 {
-    font-size: 4.5rem; 
-    font-weight: 800;
-    line-height: 1.05;
-    margin-bottom: 25px;
-    letter-spacing: -1.5px;
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; box-shadow: 0 0 12px #4ade80, 0 0 4px #4ade80; }
+    50% { opacity: 0.3; box-shadow: 0 0 2px rgba(74, 222, 128, 0.3); }
 }
 
-p.description {
-    font-size: 1.15rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 45px;
-    max-width: 580px;
-    font-weight: 400;
-}
+h1 { font-size: 4.5rem; font-weight: 800; line-height: 1.05; margin-bottom: 25px; letter-spacing: -1.5px; }
+p.description { font-size: 1.15rem; line-height: 1.6; color: rgba(255, 255, 255, 0.8); margin-bottom: 45px; max-width: 580px; font-weight: 400; }
 
-.buttons {
-    display: flex;
-    gap: 20px;
-}
-
+.buttons { display: flex; gap: 20px; }
 .btn {
-    padding: 16px 36px;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: all 0.2s ease;
-    display: inline-block;
+    padding: 16px 36px; border-radius: 8px; font-weight: 600; text-decoration: none;
+    font-size: 1rem; transition: all 0.2s ease; display: inline-flex; align-items: center; justify-content: center;
+}
+.btn-primary { background-color: #007bff; color: white; border: none; }
+.btn-primary:hover { background-color: #0056b3; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3); }
+.btn-outline { background-color: transparent; color: white; border: 1px solid rgba(255,255,255,0.3); }
+.btn-outline:hover { border-color: #fff; background-color: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+.stats-bar { position: absolute; bottom: 40px; left: 60px; right: 60px; display: flex; align-items: flex-end; justify-content: space-between; z-index: 2; }
+.stats { display: flex; gap: 80px; flex-wrap: wrap; }
+.stat-item h3 { font-size: 2.2rem; font-weight: 800; margin-bottom: 0px; line-height: 1; display: flex; align-items: baseline; }
+.stat-item span { font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: block; margin-top: 5px; }
+
+.scroll-indicator { display: flex; flex-direction: column; align-items: center; font-size: 0.75rem; color: rgba(255, 255, 255, 0.7); text-transform: uppercase; letter-spacing: 1px; margin-right: 15%; animation: bounce 2s infinite; }
+.scroll-indicator span { margin-bottom: 8px; }
+
+@keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-20px);} 60% {transform: translateY(-15px);} }
+
+/* --- GLOBÁLNÍ TŘÍDY PRO SEKCE --- */
+.section-padding { padding: 100px 60px; }
+.container { max-width: 1200px; margin: 0 auto; }
+.section-title { font-size: 2.5rem; font-weight: 800; text-align: center; margin-bottom: 50px; letter-spacing: -1px; }
+.section-title span { color: #007bff; }
+
+/* --- SCROLL REVEAL ANIMACE --- */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* --- NAŠE OBORY (KARTY) --- */
+.courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+.course-card { background: #1a1a1a; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s ease; display: flex; flex-direction: column; }
+.course-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0, 123, 255, 0.15); border-color: rgba(0, 123, 255, 0.4); }
+.course-img { height: 220px; background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.05); transition: transform 0.5s ease; }
+.course-card:hover .course-img { transform: scale(1.05); }
+.course-content { padding: 35px; background: #1a1a1a; position: relative; flex-grow: 1; display: flex; flex-direction: column; }
+.course-tag { position: absolute; top: -15px; left: 35px; background: #007bff; color: white; padding: 6px 14px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+.course-card h3 { font-size: 1.5rem; margin-bottom: 15px; margin-top: 10px; }
+.course-card p { color: rgba(255, 255, 255, 0.6); line-height: 1.6; margin-bottom: 25px; flex-grow: 1; }
+.course-link { color: #007bff; text-decoration: none; font-weight: 600; font-size: 1rem; transition: color 0.2s; }
+.course-link:hover { color: #4ade80; }
+
+/* --- PROČ MY (VÝHODY) --- */
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+.feature-box { text-align: center; padding: 40px 30px; background: rgba(255,255,255,0.02); border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s ease; }
+.feature-box:hover { background: rgba(255,255,255,0.05); transform: translateY(-5px); }
+.feature-icon { width: 70px; height: 70px; margin: 0 auto 25px; background: rgba(0, 123, 255, 0.1); border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #007bff; transition: all 0.3s ease; }
+.feature-box:hover .feature-icon { background: #007bff; color: white; box-shadow: 0 0 20px rgba(0,123,255,0.4); }
+.feature-box h4 { font-size: 1.2rem; margin-bottom: 15px; }
+.feature-box p { color: rgba(255, 255, 255, 0.6); line-height: 1.6; font-size: 0.95rem; }
+
+/* --- CTA SEKCE (ZÁVĚR PŘED FOOTEREM) --- */
+.cta-section { background: linear-gradient(135deg, #007bff 0%, #00428a 100%); padding: 80px 60px; border-radius: 24px; margin: 40px 60px 100px 60px; text-align: center; box-shadow: 0 20px 40px rgba(0, 123, 255, 0.2); }
+.cta-section h2 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -1px; }
+.cta-section p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+
+/* --- MOBILNÍ RESPONSIVITA --- */
+@media (max-width: 1024px) {
+    h1 { font-size: 3.5rem; } header { padding: 20px 30px; } header.scrolled { padding: 15px 30px; }
+    .hero { padding: 120px 30px 150px 30px; } nav { display: none; } .stats { gap: 40px; }
+    .section-padding { padding: 80px 30px; } .cta-section { margin: 20px 30px 80px 30px; padding: 60px 30px; }
+    .cta-section h2 { font-size: 2.5rem; }
 }
 
-.btn-primary {
-    background-color: #2ea4db; 
-    color: white;
-    border: none;
+@media (max-width: 768px) {
+    .courses-grid { grid-template-columns: 1fr; }
+    .buttons { flex-direction: column; width: 100%; } .btn { width: 100%; } .section-title { font-size: 2rem; }
 }
 
-.btn-primary:hover {
-    background-color: #258ec0;
-    transform: translateY(-2px);
+@media (max-width: 400px) { h1 { font-size: 2.5rem; } .stat-item h3 { font-size: 1.2rem; } }
+
+/* --- MOBILNÍ HAMBURGER MENU --- */
+.hamburger { display: none; }
+.bar { display: block; width: 25px; height: 3px; margin: 5px auto; transition: all 0.3s ease-in-out; background-color: white; border-radius: 3px; }
+
+@media (max-width: 1024px) {
+    .hamburger { display: block; z-index: 2000; }
+    .hamburger.active .bar:nth-child(2) { opacity: 0; }
+    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    .nav-menu { position: fixed; left: -100%; top: 0; gap: 0; flex-direction: column; background-color: rgba(18, 18, 18, 0.98); backdrop-filter: blur(20px); width: 100%; height: 100vh; text-align: center; transition: 0.4s cubic-bezier(0.77, 0, 0.175, 1); z-index: 1500; display: flex; justify-content: center; align-items: center; }
+    .nav-menu ul { flex-direction: column; gap: 30px; padding: 0; } .nav-menu.active { left: 0; }
+    .nav-menu a { font-size: 1.5rem; font-weight: 600; color: white; } .btn-bakalari { display: none; }
+    .hero { text-align: center; justify-content: center; } .hero::before { background: linear-gradient(180deg, rgba(18, 18, 18, 0.9) 0%, rgba(18, 18, 18, 0.7) 100%); }
+    .content { width: 100%; display: flex; flex-direction: column; align-items: center; } .stats-bar { left: 20px; right: 20px; bottom: 20px; flex-direction: column; align-items: center; position: relative; margin-top: 50px; }
+    .stats { gap: 30px; justify-content: center; width: 100%; margin-bottom: 20px; } .scroll-indicator { display: none; }
 }
 
-.btn-outline {
-    background-color: transparent;
-    color: white;
-    border: 1px solid rgba(255,255,255,0.3);
+/* --- VYLEPŠENÝ FOOTER --- */
+.site-footer {
+    background-color: #0a0a0a; 
+    color: rgba(255, 255, 255, 0.8);
+    padding: 70px 60px 30px 60px;
+    font-family: 'Inter', sans-serif;
+    position: relative; 
 }
 
-.btn-outline:hover {
-    border-color: #fff;
-    background-color: rgba(255,255,255,0.1);
-    transform: translateY(-2px);
-}
-
-.stats-bar {
+/* Laserová modrá linka nahoře */
+.footer-top-glow {
     position: absolute;
-    bottom: 40px;
-    left: 60px;
-    right: 60px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    z-index: 2;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,123,255,0.6), transparent);
+    box-shadow: 0 0 15px rgba(0,123,255,0.8);
 }
 
-.stats {
-    display: flex;
-    gap: 80px;
+/* Grid layout pro 4 sloupce */
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.5fr; 
+    gap: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 40px;
 }
 
-.stat-item h3 {
-    font-size: 2.2rem;
-    font-weight: 800;
-    margin-bottom: 0px;
-    line-height: 1;
-}
+.footer-logo { display: flex; align-items: center; gap: 15px; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.2; color: #ffffff; margin-bottom: 20px; }
+.footer-logo img { height: 45px; width: auto; display: block; }
+.footer-about { font-size: 0.95rem; line-height: 1.6; max-width: 350px; color: rgba(255, 255, 255, 0.6); }
 
-.stat-item span {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.6);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    display: block;
-    margin-top: 5px;
-}
+.footer-column h4 { color: #ffffff; font-size: 1.15rem; font-weight: 600; margin-bottom: 25px; position: relative; padding-bottom: 12px; }
+.footer-column h4::after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 3px; background-color: #007bff; border-radius: 2px; }
 
-.scroll-indicator {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.7);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-right: 15%; 
-    animation: bounce 2s infinite;
-}
+.footer-column ul { list-style: none; padding: 0; }
+.footer-column ul li { margin-bottom: 12px; }
+.footer-column ul a { color: rgba(255, 255, 255, 0.6); text-decoration: none; font-size: 0.95rem; transition: all 0.3s ease; }
+.footer-column ul a:hover { color: #007bff; padding-left: 5px; }
+.footer-column p { font-size: 0.95rem; margin-bottom: 15px; color: rgba(255, 255, 255, 0.6); line-height: 1.5; }
 
-.scroll-indicator span {
-    margin-bottom: 8px;
-}
+/* Nové: Sociální ikony */
+.social-icons { display: flex; gap: 15px; margin-bottom: 25px; }
+.social-icon { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; background: rgba(255,255,255,0.05); border-radius: 50%; color: white; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.1); }
+.social-icon:hover { background: #007bff; transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,123,255,0.4); border-color: #007bff; color: white; }
 
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-    40% {transform: translateY(-20px);}
-    60% {transform: translateY(-15px);}
-}
+/* Nové: Newsletter */
+.newsletter p { font-size: 0.9rem; margin-bottom: 10px; }
+.newsletter-form { display: flex; gap: 10px; }
+.newsletter-form input { flex-grow: 1; padding: 12px 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.4); color: white; outline: none; font-family: 'Inter', sans-serif; transition: all 0.3s; }
+.newsletter-form input:focus { border-color: #007bff; background: rgba(0,0,0,0.8); }
+.newsletter-form button { padding: 12px 20px; border-radius: 8px; border: none; background: #007bff; color: white; font-weight: bold; transition: all 0.3s; }
+.newsletter-form button:hover { background: #0056b3; box-shadow: 0 0 15px rgba(0,123,255,0.4); }
+
+.footer-bottom { text-align: center; padding-top: 25px; font-size: 0.85rem; color: rgba(255, 255, 255, 0.4); }
 
 @media (max-width: 1024px) {
-    h1 { font-size: 3.5rem; }
-    header { padding: 20px 30px; }
-    .hero { padding: 0 30px; }
-    nav { display: none; } 
-    .stats { gap: 40px; }
+    .site-footer { padding: 50px 30px 20px 30px; }
+    .footer-container { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+    .footer-container { grid-template-columns: 1fr; }
 }
 
-/* --- MOBILNÍ HAMBURGER MENU A RESPONZIVITA --- */
-
-/* Skrytí hamburgeru na počítači */
-.hamburger {
-    display: none;
-    cursor: pointer;
-}
-
-.bar {
-    display: block;
-    width: 25px;
-    height: 3px;
-    margin: 5px auto;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    background-color: white;
-    border-radius: 3px;
-}
-
-/* MEDIA QUERY - Vše pod 1024px (tablety a mobily) */
-@media (max-width: 1024px) {
-    
-    /* Úprava headeru */
-    header {
-        padding: 20px 20px;
-    }
-
-    .hamburger {
-        display: block; /* Zobrazit hamburger */
-        z-index: 200;
-    }
-
-    /* Animace hamburgeru na křížek */
-    .hamburger.active .bar:nth-child(2) {
-        opacity: 0;
-    }
-    .hamburger.active .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-    .hamburger.active .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
-
-    /* Navigace - vysouvací menu */
-    .nav-menu {
-        position: fixed;
-        left: -100%;
-        top: 0;
-        gap: 0;
-        flex-direction: column;
-        background-color: #363333; /* Tmavé pozadí menu */
-        width: 100%;
-        height: 100vh; /* Přes celou výšku */
-        text-align: center;
-        transition: 0.3s;
-        z-index: 150;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .nav-menu ul {
-        flex-direction: column;
-        gap: 30px;
-        padding: 0;
-    }
-
-    .nav-menu.active {
-        left: 0; /* Vysunutí menu */
-    }
-
-    .nav-menu a {
-        font-size: 1.5rem; /* Větší písmo v menu */
-        font-weight: 600;
-    }
-
-    /* Skrytí tlačítka Bakaláři v headeru na mobilu (můžeš ho případně přidat do menu) */
-    .btn-bakalari {
-        display: none; 
-    }
-
-    /* Úpravy Hero sekce */
-    .hero {
-        padding: 0 20px;
-        text-align: center; /* Vycentrovat text na mobilu */
-        justify-content: center;
-    }
-    
-    .hero::before {
-        /* Ztmavit pozadí víc, aby byl text čitelnější */
-        background: linear-gradient(180deg, rgba(21, 23, 30, 0.8) 0%, rgba(21, 23, 30, 0.6) 100%);
-    }
-
-    .content {
-        margin-top: 0;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    h1 {
-        font-size: 3rem; /* Menší nadpis */
-        margin-bottom: 20px;
-    }
-
-    p.description {
-        font-size: 1rem;
-        max-width: 100%;
-    }
-
-    .buttons {
-        flex-direction: column; /* Tlačítka pod sebe */
-        width: 100%;
-        gap: 15px;
-    }
-
-    .btn {
-        width: 100%; /* Tlačítka přes celou šířku */
-        text-align: center;
-    }
-
-    /* Statistiky */
-    .stats-bar {
-        left: 20px;
-        right: 20px;
-        bottom: 20px;
-        flex-direction: column; /* Statistiky pod sebe nebo skrýt scroll */
-        align-items: center;
-    }
-
-    .stats {
-        gap: 30px;
-        justify-content: center;
-        width: 100%;
-        margin-bottom: 20px;
-    }
-    
-    .stat-item h3 {
-        font-size: 1.5rem;
-    }
-
-    .scroll-indicator {
-        display: none; /* Na mobilu scroll indikátor schováme, překáží */
-    }
-}
-
-/* Extra úprava pro velmi malé telefony */
-@media (max-width: 400px) {
-    h1 { font-size: 2.5rem; }
-    .stat-item h3 { font-size: 1.2rem; }
-}
+/* --- PADAJÍCÍ HVĚZDY VE FOOTERU --- */
+.footer-star { position: fixed; pointer-events: none; z-index: 9999; background: #ffffff; border-radius: 50%; box-shadow: 0 0 4px #ffffff, 0 0 10px #007bff, 0 0 20px #007bff; animation: starFall forwards ease-in; }
+@keyframes starFall { 0% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 0; transform: translate(calc(-50% + var(--driftX)), 150px) scale(0.1); } }

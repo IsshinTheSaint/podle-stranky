@@ -10,7 +10,10 @@
 </head>
 <body>
 
-    <header>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <header id="main-header">
         <div class="logo">
             <img src="/imgs/logo.webp" alt="Logo">
             <span>Střední škola<br>Horažďovice</span>
@@ -25,11 +28,10 @@
         <nav class="nav-menu">
             <ul>
                 <li><a href="#">Domů</a></li>
-                <li><a href="#">Obory</a></li>
+                <li><a href="#obory">Obory</a></li>
+                <li><a href="#vyhody">Proč my</a></li>
                 <li><a href="#">Aktuality</a></li>
                 <li><a href="#">Kontakt</a></li>
-                <li><a href="#">Školní jídelna</a></li>
-                <li><a href="#">Domov mládeže</a></li>
                 <li><a href="#">Pro veřejnost</a></li>
             </ul>
         </nav>
@@ -48,23 +50,23 @@
             </p>
 
             <div class="buttons">
-                <a href="#" class="btn btn-primary">Naše obory ></a>
-                <a href="#" class="btn btn-outline">Kontaktujte nás</a>
+                <a href="#obory" class="btn btn-primary">Naše obory ></a>
+                <a href="#kontakt" class="btn btn-outline">Kontaktujte nás</a>
             </div>
         </div>
 
         <div class="stats-bar">
             <div class="stats">
                 <div class="stat-item">
-                    <h3>300+</h3>
+                    <h3><span class="counter" data-target="300">0</span>+</h3>
                     <span>Žáků</span>
                 </div>
                 <div class="stat-item">
-                    <h3>5</h3>
+                    <h3 class="counter" data-target="5">0</h3>
                     <span>Maturitních oborů</span>
                 </div>
                 <div class="stat-item">
-                    <h3>4</h3>
+                    <h3 class="counter" data-target="4">0</h3>
                     <span>Učebních oborů</span>
                 </div>
             </div>
@@ -78,7 +80,137 @@
         </div>
     </section>
 
+    <main>
+        <section id="obory" class="section-padding reveal">
+            <div class="container">
+                <h2 class="section-title">Vyberte si <span>svou budoucnost</span></h2>
+                
+                <div class="courses-grid">
+                    <div class="course-card">
+                        <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop');"></div>
+                        <div class="course-content">
+                            <div class="course-tag">Maturitní obor</div>
+                            <h3>Informační technologie</h3>
+                            <p>Programování, sítě, kybernetická bezpečnost a vývoj aplikací. Získejte praxi s nejnovějšími technologiemi.</p>
+                            <a href="#" class="course-link">Více o oboru &rarr;</a>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2000&auto=format&fit=crop');"></div>
+                        <div class="course-content">
+                            <div class="course-tag">Maturitní obor</div>
+                            <h3>Grafický design</h3>
+                            <p>UX/UI design, digitální ilustrace, 3D modelování a animace. Staňte se mistrem vizuální komunikace.</p>
+                            <a href="#" class="course-link">Více o oboru &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="vyhody" class="section-padding reveal">
+            <div class="container">
+                <h2 class="section-title">Proč studovat <span>u nás?</span></h2>
+                
+                <div class="features-grid">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        </div>
+                        <h4>Top vybavení</h4>
+                        <p>Pracujeme na výkonných strojích a s nejnovějším softwarem, který používají profesionálové.</p>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <h4>Učitelé z praxe</h4>
+                        <p>Naši lektoři nejsou jen teoretici. Jsou to lidé, kteří aktivně pracují v IT a designu.</p>
+                    </div>
+
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        </div>
+                        <h4>Reálné projekty</h4>
+                        <p>Žádné nesmyslné úkoly do šuplíku. Spolupracujeme s firmami na reálných zakázkách.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <div class="cta-section">
+                <h2>Udělejte první krok</h2>
+                <p>Přijďte se k nám podívat osobně na Den otevřených dveří nebo si rovnou podejte přihlášku pro školní rok 2026/2027.</p>
+                <div class="buttons" style="justify-content: center;">
+                    <a href="#" class="btn" style="background: white; color: #007bff;">Podat přihlášku</a>
+                    <a href="#" class="btn btn-outline" style="border-color: rgba(255,255,255,0.5);">Dny otevřených dveří</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="kontakt" class="site-footer">
+        <div class="footer-top-glow"></div> <div class="footer-container">
+            <div class="footer-column brand-col">
+                <div class="footer-logo">
+                    <img src="/imgs/logo.webp" alt="Logo">
+                    <span>Střední škola<br>Horažďovice</span>
+                </div>
+                <p class="footer-about">Moderní vzdělávací instituce připravující studenty na úspěšnou budoucnost v oblasti informačních technologií a designu.</p>
+            </div>
+            
+            <div class="footer-column links-col">
+                <h4>Rychlé odkazy</h4>
+                <ul>
+                    <li><a href="#">O škole</a></li>
+                    <li><a href="#">Přijímací řízení</a></li>
+                    <li><a href="#">Naše obory</a></li>
+                    <li><a href="#">Školní dokumenty</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column contact-col">
+                <h4>Kontaktujte nás</h4>
+                <p>📍 Blatenská 313, 341 01 Horažďovice</p>
+                <p>📞 +420 123 456 789</p>
+                <p>✉️ info@sshorazdovice.cz</p>
+            </div>
+
+            <div class="footer-column social-col">
+                <h4>Sledujte nás</h4>
+                <div class="social-icons">
+                    <a href="#" class="social-icon" aria-label="Facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="YouTube">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+                    </a>
+                </div>
+                
+                <div class="newsletter">
+                    <p>Získejte novinky přímo do e-mailu</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault();">
+                        <input type="email" placeholder="Váš e-mail" required>
+                        <button type="submit">→</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Střední škola Horažďovice. Všechna práva vyhrazena.</p>
+        </div>
+    </footer>
+
     <script>
+        // --- 1. MOBILNÍ MENU ---
         const hamburger = document.querySelector(".hamburger");
         const navMenu = document.querySelector(".nav-menu");
 
@@ -87,11 +219,107 @@
             navMenu.classList.toggle("active");
         });
 
-        // Zavřít menu když se klikne na odkaz
         document.querySelectorAll(".nav-menu a").forEach(n => n.addEventListener("click", () => {
             hamburger.classList.remove("active");
             navMenu.classList.remove("active");
         }));
+
+        // --- 2. SKLENĚNÝ STICKY HEADER ---
+        const header = document.getElementById("main-header");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        });
+
+        // --- 3. SCROLL REVEAL ANIMACE ---
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            });
+        }, revealOptions);
+        
+        reveals.forEach(reveal => { revealOnScroll.observe(reveal); });
+
+        // --- 4. PADAJÍCÍ HVĚZDY VE FOOTERU ---
+        const siteFooter = document.querySelector('.site-footer');
+        if (siteFooter) {
+            let isThrottled = false;
+            siteFooter.addEventListener('mousemove', function(e) {
+                if (isThrottled) return;
+                isThrottled = true;
+                setTimeout(() => isThrottled = false, 30); 
+
+                const star = document.createElement('div');
+                star.classList.add('footer-star');
+                const size = Math.random() * 3 + 2;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = e.clientX + 'px';
+                star.style.top = e.clientY + 'px';
+                const driftX = (Math.random() - 0.5) * 100;
+                star.style.setProperty('--driftX', `${driftX}px`);
+                const duration = Math.random() * 1 + 1;
+                star.style.animationDuration = `${duration}s`;
+                document.body.appendChild(star);
+                setTimeout(() => { star.remove(); }, duration * 1000 + 100);
+            });
+        }
+
+        // --- 5. ANIMOVANÉ POČÍTADLO STATISTIK ---
+        const counters = document.querySelectorAll('.counter');
+        const speed = 150; 
+
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(updateCount, 15);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            setTimeout(updateCount, 500);
+        });
+
+        // --- 6. VLASTNÍ INTERAKTIVNÍ KURZOR ---
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', function (e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Přidán input a sociální ikony do magnetického efektu kurzoru
+        document.querySelectorAll('a, button, .btn, .course-card, input, .social-icon').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorOutline.classList.add('cursor-hover');
+                cursorDot.classList.add('cursor-hover-dot');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorOutline.classList.remove('cursor-hover');
+                cursorDot.classList.remove('cursor-hover-dot');
+            });
+        });
     </script>
 
 </body>
